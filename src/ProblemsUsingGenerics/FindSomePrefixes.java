@@ -1,42 +1,14 @@
 package ProblemsUsingGenerics;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.stream.Collectors;
 
 public class FindSomePrefixes {
+	//https://stackoverflow.com/questions/5545584/nifty-way-to-iterate-over-parallel-arrays-in-java-using-foreach
 	
-	class iteratorHelper implements Iterator{
-		String A;
-		public iteratorHelper(String A) {
-			this.A = A;
-		}
-
-		@Override
-		public boolean hasNext() {
-			// TODO Auto-generated method stub
-			ArrayList<Character> arrayCharsSentence = new ArrayList<>(
-	                 A.chars()
-	                 .mapToObj(e -> (char) e)
-	                 .collect(
-	                  Collectors.toList()
-	                 )
-	         );
-			boolean hasNext = false;
-			for(String sentence : listOfchars) {
-				 
-			}
-			return false;
-		}
-
-		@Override
-		public Object next() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-	}
+	static ArrayList<Character> arrayCharsSentence = new ArrayList<>();
 		
-	public  String longestPrefix (ArrayList<String> A) {
+	static public  String longestPrefix (ArrayList<String> A) {
 		String longestPrefix = "";
 		int minStringSize=0;
 		for(String sentence : A) {
@@ -47,6 +19,14 @@ public class FindSomePrefixes {
 		}
 		for(String sentence : A) {
 			
+					ArrayList<Character> stringToCharacters = new ArrayList<>(
+					sentence.chars()
+	                .mapToObj(e -> (char) e)
+	                .collect(
+	                 Collectors.toList()
+	                ));
+					arrayCharsSentence.addAll(stringToCharacters);
+			
 		}
 		while(minStringSize!=0) {
 			
@@ -56,5 +36,14 @@ public class FindSomePrefixes {
 		return longestPrefix;
 		}
 		
+    public static void main (String args []) {
+    		ArrayList<String> sup = new ArrayList<String>(){
+    			{
+    				add("hola");
+    				add("queshow");
+    				}
+    			};
+    	longestPrefix(sup);
+    }
 
 }
